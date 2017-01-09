@@ -15,4 +15,5 @@ import org.springframework.context.annotation.Import;
 @Import(DozerBeanMapperConfig.class)
 public @interface EnableCustomBeanMapper {
 
+	Class<BeanMapper> beanMapperClass();
 }
