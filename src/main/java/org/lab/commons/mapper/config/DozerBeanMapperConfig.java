@@ -16,6 +16,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportAware;
+import org.springframework.core.io.Resource;
 import org.springframework.core.type.AnnotationMetadata;
 
 import lombok.extern.slf4j.Slf4j;
@@ -35,8 +36,18 @@ public class DozerBeanMapperConfig implements ImportAware {
 	public void setImportMetadata(AnnotationMetadata importMetadata) {
 		log.debug("Reading Dozer mapping configuration");
 		factory = new DozerBeanMapperFactoryBean();
-		// Custom converters
 		Map<String, Object> data = importMetadata.getAnnotationAttributes(EnableDozerBeanMapper.class.getName());
+
+		// Mapping files configuration
+		String[] mappingFiles = (String[]) data.get(EnableDozerBeanMapper.MAPPING_FILES);
+		Resource[] resources = new Resource[mappingFiles.length];
+		for (int i = 0; i < resources.length; i++) {
+			resources[i] = applicationContext.getResource(mappingFiles[i]);
+		}
+		factory.setMappingFiles(resources);
+
+		// factory.setMappingFiles(mappingFiles);
+		// Custom converters configuration
 		Class<CustomConverter>[] converterClases = (Class<CustomConverter>[]) data.get("converters");
 		if (converterClases != null) {
 			List<CustomConverter> converterInstances = new ArrayList<>();

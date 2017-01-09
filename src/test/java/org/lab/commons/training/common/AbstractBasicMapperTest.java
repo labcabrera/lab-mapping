@@ -24,6 +24,9 @@ public abstract class AbstractBasicMapperTest {
 		return new TestUtils();
 	}
 
+	/**
+	 * Performs a direct conversion between clases with the same fields.
+	 */
 	@Test
 	public void test_direct_mapping() {
 		Customer customer = testUtils().createCustomer("John", "Doe", "Gaia Boulevard");
@@ -37,6 +40,10 @@ public abstract class AbstractBasicMapperTest {
 		assertThat(check.getFirstName(), equalTo("John"));
 	}
 
+	/**
+	 * Performs a direct conversion between clases with basic rename field
+	 * policy.
+	 */
 	@Test
 	public void test_custom_mapping() {
 		Customer customer = testUtils().createCustomer("John", "Doe", "Gaia Boulevard");

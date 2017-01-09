@@ -21,6 +21,10 @@ public abstract class AbstractCustomMapperTest {
 		return new TestUtils();
 	}
 
+	/**
+	 * Performs a mapping using a custom converter class defined in module
+	 * configuration.
+	 */
 	@Test
 	public void test_custom_class_mapping() {
 		Person person = new Person();

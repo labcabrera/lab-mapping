@@ -17,6 +17,12 @@ import org.springframework.context.annotation.Import;
 @Import(DozerBeanMapperConfig.class)
 public @interface EnableDozerBeanMapper {
 
+	public static final String MAPPING_FILES = "mappingFiles";
+	public static final String CONVERTERS = "converters";
+	public static final String LISTENERS = "listeners";
+
+	String[] mappingFiles() default {};
+
 	Class<? extends CustomConverter>[] converters() default {};
 
 	Class<? extends DozerEventListener>[] listeners() default {};

@@ -4,7 +4,7 @@ import org.lab.commons.mapper.EnableDozerBeanMapper;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableDozerBeanMapper
+@EnableDozerBeanMapper(mappingFiles = "classpath:dozer-test-mapping.xml")
 public class DozerTrainingConfig {
 
 }
