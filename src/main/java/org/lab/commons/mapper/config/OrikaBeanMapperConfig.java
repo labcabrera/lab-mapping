@@ -9,12 +9,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportAware;
 import org.springframework.core.type.AnnotationMetadata;
 
+import lombok.extern.slf4j.Slf4j;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 
 /**
  * @see EnableOrikaBeanMapper
  */
 @Configuration
+@Slf4j
 public class OrikaBeanMapperConfig implements ImportAware {
 
 	private ConfigurableMapper configurableMapper;
@@ -22,6 +24,7 @@ public class OrikaBeanMapperConfig implements ImportAware {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void setImportMetadata(AnnotationMetadata importMetadata) {
+		log.debug("Reading Orika mapping configuration");
 		Map<String, Object> data = importMetadata.getAnnotationAttributes(EnableOrikaBeanMapper.class.getName());
 		Class<? extends ConfigurableMapper> clazz = (Class<? extends ConfigurableMapper>) data.get("mapperClass");
 		try {

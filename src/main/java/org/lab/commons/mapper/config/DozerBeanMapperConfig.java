@@ -18,7 +18,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportAware;
 import org.springframework.core.type.AnnotationMetadata;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Configuration
+@Slf4j
 public class DozerBeanMapperConfig implements ImportAware {
 
 	@Inject
@@ -30,6 +33,7 @@ public class DozerBeanMapperConfig implements ImportAware {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void setImportMetadata(AnnotationMetadata importMetadata) {
+		log.debug("Reading Dozer mapping configuration");
 		factory = new DozerBeanMapperFactoryBean();
 		// Custom converters
 		Map<String, Object> data = importMetadata.getAnnotationAttributes(EnableDozerBeanMapper.class.getName());
