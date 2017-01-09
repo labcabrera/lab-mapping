@@ -11,6 +11,9 @@ import org.springframework.context.annotation.Import;
 
 import ma.glasnost.orika.impl.ConfigurableMapper;
 
+/**
+ * @see org.lab.commons.mapper.config.OrikaBeanMapperConfig
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
