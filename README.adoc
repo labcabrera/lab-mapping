@@ -17,9 +17,9 @@ public interface BeanMapper {
 
 Available configuration providers are:
 
-* EnableDozerBeanMapper (use dozer)
-* EnableOrikaBeanMapper (use orika)
-* EnableCustomBeanMapper (define our prefered one setting the interface implementation class)
+* *EnableDozerBeanMapper* (using dozer)
+* *EnableOrikaBeanMapper* (using orika)
+* *EnableCustomBeanMapper* (setting our prefered one setting the interface implementation class)
 
 Easily we can define our mapping configuration like:
 
