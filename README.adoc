@@ -1,0 +1,62 @@
+= Demo mapping provider configuration
+
+This project defines a general entity mapper interface:
+
+[source,java]
+----
+public interface BeanMapper {
+
+	<S, D> D map(S sourceObject, Class<D> destinationClass);
+
+	<S, D> void map(S sourceObject, D destinationObject);
+
+	<S, D> List<D> mapAsList(Iterable<S> source, Class<D> destinationClass);
+
+}
+----
+
+Available configuration providers are:
+
+* EnableDozerBeanMapper (use dozer)
+* EnableOrikaBeanMapper (use orika)
+* EnableCustomBeanMapper (define our prefered one setting the interface implementation class)
+
+Easily we can define our mapping configuration like:
+
+[source,java]
+----
+@Configuration
+@EnableDozerBeanMapper(mappingFiles = { //
+		"classpath:dozer-test-mapping.xml", //
+		"classpath:dozer-test-custom-converter.xml" })
+public class DozerTrainingConfig {
+	...
+}
+----
+
+
+
+[source,java]
+----
+@Configuration
+@EnableOrikaBeanMapper(mapperClass = OrikaTrainingMapper.class)
+public class OrikaTrainingConfig {
+	...
+}
+----
+
+
+[source,java]
+----
+@Configuration
+@EnableCustomBeanMapper(beanMapperClass = MyFavoriteMapper.class)
+public class OrikaTrainingConfig {
+	...
+}
+----
+
+
+== See
+
+* http://dozer.sourceforge.net/
+* http://orika-mapper.github.io/orika-docs/intro.html
