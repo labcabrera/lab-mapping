@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.dozer.CustomConverter;
-import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.dozer.spring.DozerBeanMapperFactoryBean;
 import org.lab.commons.mapper.BeanMapper;
@@ -18,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportAware;
 import org.springframework.core.io.Resource;
 import org.springframework.core.type.AnnotationMetadata;
+import org.springframework.util.Assert;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,6 +36,7 @@ public class DozerBeanMapperConfig implements ImportAware {
 	public void setImportMetadata(AnnotationMetadata importMetadata) {
 		log.debug("Reading Dozer mapping configuration");
 		factory = new DozerBeanMapperFactoryBean();
+		factory.setApplicationContext(applicationContext);
 		Map<String, Object> data = importMetadata.getAnnotationAttributes(EnableDozerBeanMapper.class.getName());
 
 		// Mapping files configuration
@@ -58,11 +59,12 @@ public class DozerBeanMapperConfig implements ImportAware {
 		}
 		// TODO define all factory properties
 		try {
+			factory.afterPropertiesSet();
 			mapper = factory.getObject();
+			Assert.notNull(mapper, "Dozer mapper cant be null");
 		} catch (Exception ex) {
 			throw new RuntimeException("Dozer configuration error", ex);
 		}
-		mapper = (mapper != null ? mapper : new DozerBeanMapper());
 	}
 
 	@Bean
