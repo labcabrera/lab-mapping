@@ -61,34 +61,34 @@ public class CustomTrainingConfig {
 | 		|	Spring API| Orika	|Dozer	|ModelMapper
 
 |Performance
-|[]
-|[Good (best) 
-|[Poor]
-|[Good]
+|
+|Good (best) 
+|Poor
+|Good
 
 |Direct mapping
-|[Not supported]
-|[Automatic]
-|[Automatic]
-|[Automatic]
+|Not supported
+|Automatic
+|Automatic
+|Automatic
 
 |Rename mapping policy
-|[Not supported]
-|[Easy (API)]
-|[XML]
-|[Easy (API)]
+|Not supported
+|Easy (API)
+|XML
+|Easy (API)
 
 |Custom class conversion
-|[Easy ]
-|[Easy]
-|[Easy]
-|[Verbose]
+|Easy 
+|Easy
+|Easy
+|Verbose
 
 |Last update
-|[]
-|[Dec 2016]
-|[Apr 2014]
-|[Oct 2016]
+|
+|Dec 2016
+|Apr 2014
+|Oct 2016
 
 |===
 
