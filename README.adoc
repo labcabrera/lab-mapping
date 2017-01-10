@@ -2,18 +2,18 @@
 
 Spring ConverterService provided by:
 
-* *EnableOrikaConversionService* (using Orika)
-* *EnableDozerConversionService* (using Dozer)
-* *EnableModelMapperConversionService* (using ModelMapper)
-* *EnableCustomConversionService* (setting up our prefered implementation)
+* `EnableOrikaConversionService` (using Orika)
+* `EnableDozerConversionService` (using Dozer)
+* `EnableModelMapperConversionService` (using ModelMapper)
+* `EnableCustomConversionService` (setting up our prefered implementation)
 
 Easily we can define our mapping configuration like:
 
 [source,java]
 ----
 @Configuration
-@EnableDozerBeanMapper(mappingFiles = { //
-		"classpath:dozer-test-mapping.xml", //
+@EnableDozerBeanMapper(mappingFiles = {
+		"classpath:dozer-test-mapping.xml",
 		"classpath:dozer-test-custom-converter.xml" })
 public class DozerTrainingConfig {
 	...
@@ -32,6 +32,19 @@ public class OrikaTrainingConfig {
 ----
 
 
+
+[source,java]
+----
+@Configuration
+@EnableModelMapperConversionService(//
+		mappings = { CustomerToCustomerDtoPropertyMap.class }, //
+		converters = { PersonToPersonDtoConverter.class, PersonDtoToPersonConverter.class })
+public class ModelMapperTrainingConfig {
+}
+----
+
+
+
 [source,java]
 ----
 @Configuration
@@ -41,6 +54,33 @@ public class OrikaTrainingConfig {
 }
 ----
 
+== Performance and capacities
+
+[cols="3,1,1,1", options="header"] 
+|===
+| 		| Orika	|Dozer	|ModelMapper
+
+|Performance
+|Good (best) 
+|Poor
+|Good
+
+|Direct mapping
+|Automatic
+|Automatic
+|Automatic
+
+|Rename mapping policy
+|Easy (programaticaly)
+|XML mappings
+|Easy (programaticaly)
+
+|Custom class conversion
+|Easy (`ma.glasnost.orika.CustomMapper`)
+|Easy (`org.dozer.CustomConverter`)
+|Verbose (`org.modelmapper.Converter`)
+
+|===
 
 == See
 
