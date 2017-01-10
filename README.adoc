@@ -56,7 +56,7 @@ public class CustomTrainingConfig {
 
 == Performance and capacities
 
-[cols="3,1,1,1", options="header"] 
+[options="header"] 
 |===
 | 		| Orika	|Dozer	|ModelMapper
 
