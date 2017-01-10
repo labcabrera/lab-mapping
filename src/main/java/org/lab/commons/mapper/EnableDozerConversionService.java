@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Import;
 @Target(ElementType.TYPE)
 @Documented
 @Import(DozerBeanMapperConfig.class)
-public @interface EnableDozerBeanMapper {
+public @interface EnableDozerConversionService {
 
 	public static final String MAPPING_FILES = "mappingFiles";
 	public static final String CONVERTERS = "converters";

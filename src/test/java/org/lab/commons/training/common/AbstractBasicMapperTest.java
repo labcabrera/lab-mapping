@@ -8,16 +8,16 @@ import javax.inject.Inject;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;
-import org.lab.commons.mapper.BeanMapper;
 import org.lab.commons.training.common.domain.Customer;
 import org.lab.commons.training.common.domain.Person;
 import org.lab.commons.training.common.dto.CustomerDto;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.convert.ConversionService;
 
 public abstract class AbstractBasicMapperTest {
 
 	@Inject
-	protected BeanMapper beanMapper;
+	protected ConversionService beanMapper;
 
 	@Bean
 	public TestUtils testUtils() {
@@ -30,8 +30,8 @@ public abstract class AbstractBasicMapperTest {
 	@Test
 	public void test_direct_mapping() {
 		Customer customer = testUtils().createCustomer("John", "Doe", "Gaia Boulevard");
-		Person person = beanMapper.map(customer, Person.class);
-		Customer check = beanMapper.map(person, Customer.class);
+		Person person = beanMapper.convert(customer, Person.class);
+		Customer check = beanMapper.convert(person, Customer.class);
 
 		assertThat(person.getFirstName(), equalTo(customer.getFirstName()));
 		assertThat(person.getLastName(), equalTo(customer.getLastName()));
@@ -47,7 +47,7 @@ public abstract class AbstractBasicMapperTest {
 	@Test
 	public void test_custom_mapping() {
 		Customer customer = testUtils().createCustomer("John", "Doe", "Gaia Boulevard");
-		CustomerDto customerDto = beanMapper.map(customer, CustomerDto.class);
+		CustomerDto customerDto = beanMapper.convert(customer, CustomerDto.class);
 
 		assertThat(customerDto.getName(), Matchers.equalTo(customer.getFirstName()));
 		assertThat(customerDto.getFirstSurname(), Matchers.equalTo(customer.getLastName()));

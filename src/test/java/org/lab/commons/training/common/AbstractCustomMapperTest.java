@@ -4,17 +4,17 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.junit.Test;
-import org.lab.commons.mapper.BeanMapper;
 import org.lab.commons.training.common.domain.Address;
 import org.lab.commons.training.common.domain.Person;
 import org.lab.commons.training.common.dto.PersonDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.convert.ConversionService;
 
 public abstract class AbstractCustomMapperTest {
 
 	@Autowired
-	private BeanMapper beanMapper;
+	private ConversionService beanMapper;
 
 	@Bean
 	public TestUtils testUtils() {
@@ -32,8 +32,8 @@ public abstract class AbstractCustomMapperTest {
 		person.setLastName("Doe");
 		person.setAddress(new Address());
 		person.getAddress().setRoad("Gaia Boulevard");
-		PersonDto personDto = beanMapper.map(person, PersonDto.class);
-		Person check = beanMapper.map(personDto, Person.class);
+		PersonDto personDto = beanMapper.convert(person, PersonDto.class);
+		Person check = beanMapper.convert(personDto, Person.class);
 
 		assertThat(personDto.getName(), equalTo(person.getFirstName()));
 		assertThat(personDto.getRoad(), equalTo(person.getAddress().getRoad()));

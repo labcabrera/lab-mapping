@@ -8,12 +8,15 @@ import java.lang.annotation.Target;
 
 import org.lab.commons.mapper.config.DozerBeanMapperConfig;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.convert.ConversionService;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
 @Import(DozerBeanMapperConfig.class)
-public @interface EnableCustomBeanMapper {
+public @interface EnableCustomConversionService {
 
-	Class<BeanMapper> beanMapperClass();
+	public static final String SERVICE = "service";
+
+	Class<ConversionService> service();
 }

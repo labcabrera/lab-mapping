@@ -9,12 +9,12 @@ import javax.inject.Inject;
 import org.dozer.CustomConverter;
 import org.dozer.Mapper;
 import org.dozer.spring.DozerBeanMapperFactoryBean;
-import org.lab.commons.mapper.BeanMapper;
-import org.lab.commons.mapper.EnableDozerBeanMapper;
+import org.lab.commons.mapper.EnableDozerConversionService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportAware;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.core.io.Resource;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.util.Assert;
@@ -37,10 +37,10 @@ public class DozerBeanMapperConfig implements ImportAware {
 		log.debug("Reading Dozer mapping configuration");
 		factory = new DozerBeanMapperFactoryBean();
 		factory.setApplicationContext(applicationContext);
-		Map<String, Object> data = importMetadata.getAnnotationAttributes(EnableDozerBeanMapper.class.getName());
+		Map<String, Object> data = importMetadata.getAnnotationAttributes(EnableDozerConversionService.class.getName());
 
 		// Mapping files configuration
-		String[] mappingFiles = (String[]) data.get(EnableDozerBeanMapper.MAPPING_FILES);
+		String[] mappingFiles = (String[]) data.get(EnableDozerConversionService.MAPPING_FILES);
 		Resource[] resources = new Resource[mappingFiles.length];
 		for (int i = 0; i < resources.length; i++) {
 			resources[i] = applicationContext.getResource(mappingFiles[i]);
@@ -73,8 +73,8 @@ public class DozerBeanMapperConfig implements ImportAware {
 	}
 
 	@Bean
-	public BeanMapper beanMapper() {
-		return new DozerBeanMapperImpl();
+	public ConversionService conversionService() {
+		return new DozerConversionService();
 	}
 
 }
