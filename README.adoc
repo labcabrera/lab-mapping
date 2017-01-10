@@ -61,7 +61,7 @@ public class CustomTrainingConfig {
 | 		|	Spring API| Orika	|Dozer	|ModelMapper
 
 |Performance
-|
+|Good
 |Good (best) 
 |Poor
 |Good
