@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import lombok.Data;
 
 @Data
-public class HorribleBean {
+public class HugeBeanCopy {
 
 	private String str01;
 	private String str02;
