@@ -12,10 +12,8 @@ Easily we can define our mapping configuration like:
 [source,java]
 ----
 @Configuration
-@EnableDozerBeanMapper(mappingFiles = {
-		"classpath:dozer-test-mapping.xml",
-		"classpath:dozer-test-custom-converter.xml" })
-public class DozerTrainingConfig {
+@EnableOrikaBeanMapper(mapperClass = OrikaTrainingMapper.class)
+public class OrikaTrainingConfig {
 	...
 }
 ----
@@ -24,9 +22,13 @@ public class DozerTrainingConfig {
 
 [source,java]
 ----
+include::src/test/java/org/lab/commons/training/orika/config/OrikaTrainingConfig.java
+
 @Configuration
-@EnableOrikaBeanMapper(mapperClass = OrikaTrainingMapper.class)
-public class OrikaTrainingConfig {
+@EnableDozerBeanMapper(mappingFiles = {
+		"classpath:dozer-test-mapping.xml",
+		"classpath:dozer-test-custom-converter.xml" })
+public class DozerTrainingConfig {
 	...
 }
 ----
@@ -49,7 +51,7 @@ public class ModelMapperTrainingConfig {
 ----
 @Configuration
 @EnableCustomBeanMapper(beanMapperClass = MyFavoriteMapper.class)
-public class OrikaTrainingConfig {
+public class CustomTrainingConfig {
 	...
 }
 ----
