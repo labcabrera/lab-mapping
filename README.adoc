@@ -2,8 +2,9 @@
 
 Spring ConverterService provided by:
 
-* *EnableDozerConversionService* (using dozer)
-* *EnableOrikaConversionService* (using orika)
+* *EnableOrikaConversionService* (using Orika)
+* *EnableDozerConversionService* (using Dozer)
+* *EnableModelMapperConversionService* (using ModelMapper)
 * *EnableCustomConversionService* (setting up our prefered implementation)
 
 Easily we can define our mapping configuration like:
@@ -45,3 +46,4 @@ public class OrikaTrainingConfig {
 
 * http://dozer.sourceforge.net/
 * http://orika-mapper.github.io/orika-docs/intro.html
+* http://modelmapper.org/

@@ -20,7 +20,7 @@ public class OrikaTrainingMapper extends ConfigurableMapper {
 				.byDefault().register();
 
 		factory.classMap(Person.class, PersonDto.class)//
-				.customize(new OrikaCustomPersonMapper())//
+				.customize(new PersonToPersonDtoMapper())//
 				.byDefault() //
 				.register();
 	}

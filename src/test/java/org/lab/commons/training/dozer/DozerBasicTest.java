@@ -8,6 +8,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = DozerTrainingConfig.class)
-public class DozerBasicMapperTest extends AbstractBasicTest {
+public class DozerBasicTest extends AbstractBasicTest {
 
 }

@@ -1,7 +1,8 @@
-package org.lab.commons.training.modelmapper.config;
+package org.lab.commons.training.modelmapper;
 
 import org.junit.runner.RunWith;
 import org.lab.commons.training.common.AbstractPerformanceTest;
+import org.lab.commons.training.modelmapper.config.ModelMapperTrainingConfig;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 

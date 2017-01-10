@@ -7,7 +7,7 @@ import org.lab.commons.training.common.dto.PersonDto;
 import ma.glasnost.orika.CustomMapper;
 import ma.glasnost.orika.MappingContext;
 
-public class OrikaCustomPersonMapper extends CustomMapper<Person, PersonDto> {
+public class PersonToPersonDtoMapper extends CustomMapper<Person, PersonDto> {
 
 	@Override
 	public void mapAtoB(Person a, PersonDto b, MappingContext context) {
