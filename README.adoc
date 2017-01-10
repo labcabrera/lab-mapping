@@ -92,8 +92,3 @@ public class CustomTrainingConfig {
 * http://dozer.sourceforge.net/
 * http://orika-mapper.github.io/orika-docs/intro.html
 * http://modelmapper.org/
-
-[source,java]
-----
-include::./src/test/java/org/lab/commons/training/orika/config/OrikaTrainingConfig.java[]
-----
