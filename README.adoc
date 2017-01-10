@@ -95,5 +95,5 @@ public class CustomTrainingConfig {
 
 [source,java]
 ----
-include::/training-mapping/src/test/java/org/lab/commons/training/orika/config/OrikaTrainingConfig.java
+include::src/test/java/org/lab/commons/training/orika/config/OrikaTrainingConfig.java[]
 ----
