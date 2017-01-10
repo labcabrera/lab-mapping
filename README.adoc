@@ -58,29 +58,34 @@ public class CustomTrainingConfig {
 
 [options="header"] 
 |===
-| 		| Orika	|Dozer	|ModelMapper
+| 		|	Spring API| Orika	|Dozer	|ModelMapper
 
 |Performance
+|
 |Good (best) 
 |Poor
 |Good
 
 |Direct mapping
+|Not supported
 |Automatic
 |Automatic
 |Automatic
 
 |Rename mapping policy
-|Easy (programaticaly)
-|XML mappings
-|Easy (programaticaly)
+|Not supported
+|Easy (API)
+|XML
+|Easy (API)
 
 |Custom class conversion
+|Easy 
 |Easy (`ma.glasnost.orika.CustomMapper`)
 |Easy (`org.dozer.CustomConverter`)
 |Verbose (`org.modelmapper.Converter`)
 
 |Last update
+|
 |Dec 2016
 |Apr 2014
 |Oct 2016
@@ -89,6 +94,7 @@ public class CustomTrainingConfig {
 
 == See
 
+* link:++http://stackoverflow.com/questions/1432764/any-tool-for-java-object-to-object-mapping++(Mapping libraries discusion)
 * http://dozer.sourceforge.net/
 * http://orika-mapper.github.io/orika-docs/intro.html
 * http://modelmapper.org/
