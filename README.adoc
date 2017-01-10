@@ -22,8 +22,6 @@ public class OrikaTrainingConfig {
 
 [source,java]
 ----
-include::src/test/java/org/lab/commons/training/orika/config/OrikaTrainingConfig.java
-
 @Configuration
 @EnableDozerBeanMapper(mappingFiles = {
 		"classpath:dozer-test-mapping.xml",
