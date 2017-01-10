@@ -80,6 +80,11 @@ public class CustomTrainingConfig {
 |Easy (`org.dozer.CustomConverter`)
 |Verbose (`org.modelmapper.Converter`)
 
+|Last update
+|Dec 2016
+|Apr 2014
+|Oct 2016
+
 |===
 
 == See
@@ -87,3 +92,5 @@ public class CustomTrainingConfig {
 * http://dozer.sourceforge.net/
 * http://orika-mapper.github.io/orika-docs/intro.html
 * http://modelmapper.org/
+
+include::/training-mapping/src/test/java/org/lab/commons/training/orika/config/OrikaTrainingConfig.java
