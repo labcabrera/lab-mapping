@@ -1,13 +1,13 @@
 = Demo mapping provider configuration
 
-Spring ConverterService provided by:
+This demo exposes `org.springframework.core.convert.ConversionService` with diferent implementations:
 
-* `EnableOrikaConversionService` (using Orika)
-* `EnableDozerConversionService` (using Dozer)
-* `EnableModelMapperConversionService` (using ModelMapper)
-* `EnableCustomConversionService` (setting up our prefered implementation)
+* `@EnableOrikaConversionService` (using Orika)
+* `@EnableDozerConversionService` (using Dozer)
+* `@EnableModelMapperConversionService` (using ModelMapper)
+* `@EnableCustomConversionService` (setting up our prefered implementation)
 
-Easily we can define our mapping configuration like:
+Easily we can define our mapping adding those Spring configuration annotations:
 
 [source,java]
 ----
