@@ -1,5 +1,8 @@
 package org.lab.commons.mapper.config;
 
+import static org.lab.commons.mapper.EnableDozerConversionService.CONVERTERS;
+import static org.lab.commons.mapper.EnableDozerConversionService.MAPPING_FILES;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -40,19 +43,18 @@ public class DozerConversionServiceConfig implements ImportAware {
 		Map<String, Object> data = importMetadata.getAnnotationAttributes(EnableDozerConversionService.class.getName());
 
 		// Mapping files configuration
-		String[] mappingFiles = (String[]) data.get(EnableDozerConversionService.MAPPING_FILES);
+		String[] mappingFiles = (String[]) data.get(MAPPING_FILES);
 		Resource[] resources = new Resource[mappingFiles.length];
 		for (int i = 0; i < resources.length; i++) {
 			resources[i] = applicationContext.getResource(mappingFiles[i]);
 		}
 		factory.setMappingFiles(resources);
 
-		// factory.setMappingFiles(mappingFiles);
 		// Custom converters configuration
-		Class<CustomConverter>[] converterClases = (Class<CustomConverter>[]) data.get("converters");
-		if (converterClases != null) {
+		Class<CustomConverter>[] converters = (Class<CustomConverter>[]) data.get(CONVERTERS);
+		if (converters != null) {
 			List<CustomConverter> converterInstances = new ArrayList<>();
-			for (Class<CustomConverter> converterClass : converterClases) {
+			for (Class<CustomConverter> converterClass : converters) {
 				converterInstances.add(applicationContext.getBean(converterClass));
 			}
 			factory.setCustomConverters(converterInstances);

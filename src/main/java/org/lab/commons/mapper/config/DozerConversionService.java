@@ -12,22 +12,6 @@ class DozerConversionService implements ConversionService {
 	@Inject
 	private Mapper mapper;
 
-	// @Override
-	// public <S, D> D map(S sourceObject, Class<D> destinationClass) {
-	// return mapper.map(sourceObject, destinationClass);
-	// }
-	//
-	// @Override
-	// public <S, D> void map(S sourceObject, D destinationObject) {
-	// mapper.map(sourceObject, destinationObject);
-	// }
-	//
-	// @Override
-	// public <S, D> List<D> mapAsList(Iterable<S> source, Class<D>
-	// destinationClass) {
-	// throw new RuntimeException("Not implemented");
-	// }
-
 	@Override
 	public boolean canConvert(Class<?> sourceType, Class<?> targetType) {
 		return true;

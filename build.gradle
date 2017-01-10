@@ -3,6 +3,7 @@ buildscript {
 		springVersion = "4.3.5.RELEASE"
 		orikaVersion = "1.5.0"
 		dozerVersion = "5.5.1"
+		modelmapperVersion = "0.7.7"
 	}
 }
 
@@ -28,6 +29,8 @@ dependencies {
 	
 	compile("net.sf.dozer:dozer:${dozerVersion}")
 	compile("net.sf.dozer:dozer-spring:${dozerVersion}")
+	
+	compile("org.modelmapper:modelmapper:${modelmapperVersion}");
 	
 	testCompile("junit:junit:4.12")
 	testCompile("org.springframework:spring-test:${springVersion}")

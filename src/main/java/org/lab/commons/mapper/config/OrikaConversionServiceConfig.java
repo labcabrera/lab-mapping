@@ -1,5 +1,7 @@
 package org.lab.commons.mapper.config;
 
+import static org.lab.commons.mapper.EnableOrikaConversionService.MAPPER_CLASS;
+
 import java.util.Map;
 
 import org.lab.commons.mapper.EnableOrikaConversionService;
@@ -26,7 +28,7 @@ public class OrikaConversionServiceConfig implements ImportAware {
 	public void setImportMetadata(AnnotationMetadata importMetadata) {
 		log.debug("Reading Orika mapping configuration");
 		Map<String, Object> data = importMetadata.getAnnotationAttributes(EnableOrikaConversionService.class.getName());
-		Class<? extends ConfigurableMapper> clazz = (Class<? extends ConfigurableMapper>) data.get("mapperClass");
+		Class<? extends ConfigurableMapper> clazz = (Class<? extends ConfigurableMapper>) data.get(MAPPER_CLASS);
 		try {
 			configurableMapper = clazz.newInstance();
 		} catch (InstantiationException | IllegalAccessException ex) {
@@ -36,7 +38,7 @@ public class OrikaConversionServiceConfig implements ImportAware {
 
 	@Bean
 	public ConversionService beanMapper() {
-		return new OrikaConversionServiceImpl();
+		return new OrikaConversionService();
 	}
 
 	@Bean

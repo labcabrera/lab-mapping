@@ -14,7 +14,7 @@ import org.lab.commons.training.common.dto.CustomerDto;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.convert.ConversionService;
 
-public abstract class AbstractBasicMapperTest {
+public abstract class AbstractBasicTest {
 
 	@Inject
 	protected ConversionService beanMapper;

@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.convert.ConversionService;
 
-public abstract class AbstractCustomMapperTest {
+public abstract class AbstractCustomTest {
 
 	@Autowired
 	private ConversionService beanMapper;

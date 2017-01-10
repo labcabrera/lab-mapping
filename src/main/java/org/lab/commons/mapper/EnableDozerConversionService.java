@@ -11,6 +11,9 @@ import org.dozer.DozerEventListener;
 import org.lab.commons.mapper.config.DozerConversionServiceConfig;
 import org.springframework.context.annotation.Import;
 
+/**
+ * @see DozerConversionServiceConfig
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented

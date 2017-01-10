@@ -8,7 +8,7 @@ import org.springframework.core.convert.TypeDescriptor;
 
 import ma.glasnost.orika.MapperFacade;
 
-class OrikaConversionServiceImpl implements ConversionService {
+class OrikaConversionService implements ConversionService {
 
 	@Inject
 	private MapperFacade mapperFacade;

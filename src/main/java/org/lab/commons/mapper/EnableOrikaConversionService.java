@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Import;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 
 /**
- * @see org.lab.commons.mapper.config.OrikaConversionServiceConfig
+ * @see OrikaConversionServiceConfig
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
