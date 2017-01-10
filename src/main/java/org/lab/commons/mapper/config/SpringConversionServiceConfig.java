@@ -35,6 +35,7 @@ public class SpringConversionServiceConfig implements ImportAware {
 		Map<String, Object> data = metadata.getAnnotationAttributes(EnableSpringConversionService.class.getName());
 		boolean autoScan = (boolean) data.get(EnableSpringConversionService.AUTOSCAN);
 		if (autoScan) {
+			// TODO not working (instanceof dont work with proxy classes)
 			Map<String, Converter> converters = applicationContext.getBeansOfType(Converter.class);
 			factoryBean.setConverters(converters.entrySet());
 		} else {
