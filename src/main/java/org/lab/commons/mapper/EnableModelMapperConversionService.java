@@ -7,6 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import org.lab.commons.mapper.config.ModelMapperConversionServiceConfig;
+import org.modelmapper.PropertyMap;
 import org.springframework.context.annotation.Import;
 
 @Retention(RetentionPolicy.RUNTIME)
@@ -14,5 +15,9 @@ import org.springframework.context.annotation.Import;
 @Documented
 @Import(ModelMapperConversionServiceConfig.class)
 public @interface EnableModelMapperConversionService {
+
+	public static final String MAPPINGS = "mappings";
+
+	Class<? extends PropertyMap<?, ?>>[] mappings() default {};
 
 }
