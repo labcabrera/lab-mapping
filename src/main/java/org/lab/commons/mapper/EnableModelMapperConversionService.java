@@ -7,6 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import org.lab.commons.mapper.config.ModelMapperConversionServiceConfig;
+import org.modelmapper.Converter;
 import org.modelmapper.PropertyMap;
 import org.springframework.context.annotation.Import;
 
@@ -17,7 +18,10 @@ import org.springframework.context.annotation.Import;
 public @interface EnableModelMapperConversionService {
 
 	public static final String MAPPINGS = "mappings";
+	public static final String CONVERTERS = "converters";
 
 	Class<? extends PropertyMap<?, ?>>[] mappings() default {};
+
+	Class<? extends Converter<?, ?>>[] converters() default {};
 
 }
