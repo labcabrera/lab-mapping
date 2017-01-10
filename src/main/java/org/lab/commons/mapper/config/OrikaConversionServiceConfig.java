@@ -36,7 +36,7 @@ public class OrikaConversionServiceConfig implements ImportAware {
 
 	@Bean
 	public ConversionService beanMapper() {
-		return new OrikaBeanMapperImpl();
+		return new OrikaConversionServiceImpl();
 	}
 
 	@Bean

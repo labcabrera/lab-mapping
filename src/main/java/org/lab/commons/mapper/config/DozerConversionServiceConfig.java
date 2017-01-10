@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Configuration
 @Slf4j
-public class DozerBeanMapperConfig implements ImportAware {
+public class DozerConversionServiceConfig implements ImportAware {
 
 	@Inject
 	private ApplicationContext applicationContext;

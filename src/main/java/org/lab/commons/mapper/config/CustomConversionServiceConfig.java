@@ -13,7 +13,7 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.core.type.AnnotationMetadata;
 
 @Configuration
-public class CustomBeanMapperConfig implements ImportAware {
+public class CustomConversionServiceConfig implements ImportAware {
 
 	@Inject
 	private ApplicationContext applicationContext;

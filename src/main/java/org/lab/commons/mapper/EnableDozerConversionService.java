@@ -8,13 +8,13 @@ import java.lang.annotation.Target;
 
 import org.dozer.CustomConverter;
 import org.dozer.DozerEventListener;
-import org.lab.commons.mapper.config.DozerBeanMapperConfig;
+import org.lab.commons.mapper.config.DozerConversionServiceConfig;
 import org.springframework.context.annotation.Import;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
-@Import(DozerBeanMapperConfig.class)
+@Import(DozerConversionServiceConfig.class)
 public @interface EnableDozerConversionService {
 
 	public static final String MAPPING_FILES = "mappingFiles";

@@ -1,25 +1,10 @@
 = Demo mapping provider configuration
 
-This project defines a general entity mapper interface:
+Spring ConverterService provided by:
 
-[source,java]
-----
-public interface BeanMapper {
-
-	<S, D> D map(S sourceObject, Class<D> destinationClass);
-
-	<S, D> void map(S sourceObject, D destinationObject);
-
-	<S, D> List<D> mapAsList(Iterable<S> source, Class<D> destinationClass);
-
-}
-----
-
-Available configuration providers are:
-
-* *EnableDozerBeanMapper* (using dozer)
-* *EnableOrikaBeanMapper* (using orika)
-* *EnableCustomBeanMapper* (setting our prefered one setting the interface implementation class)
+* *EnableDozerConversionService* (using dozer)
+* *EnableOrikaConversionService* (using orika)
+* *EnableCustomConversionService* (setting up our prefered implementation)
 
 Easily we can define our mapping configuration like:
 
