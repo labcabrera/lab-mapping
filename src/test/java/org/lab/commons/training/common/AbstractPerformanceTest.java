@@ -1,6 +1,6 @@
 package org.lab.commons.training.common;
 
-public class AbstractLoadTest {
+public class AbstractPerformanceTest {
 
 	public static void main(String[] args) {
 
