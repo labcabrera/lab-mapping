@@ -94,7 +94,7 @@ public class CustomTrainingConfig {
 
 == See
 
-* link:++http://stackoverflow.com/questions/1432764/any-tool-for-java-object-to-object-mapping++(Mapping libraries discusion)
+* link:++http://stackoverflow.com/questions/1432764/any-tool-for-java-object-to-object-mapping++[Mapping libraries discusion]
 * http://dozer.sourceforge.net/
 * http://orika-mapper.github.io/orika-docs/intro.html
 * http://modelmapper.org/
