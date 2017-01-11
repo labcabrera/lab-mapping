@@ -2,6 +2,7 @@ package org.lab.commons.mapper.config;
 
 import static org.lab.commons.mapper.EnableSpringConversionService.AUTOSCAN;
 import static org.lab.commons.mapper.EnableSpringConversionService.CONVERTERS;
+import static org.lab.commons.mapper.EnableSpringConversionService.ERR_AUTOSCAN_CONVERTER_INCOMPATIBLE;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -44,11 +45,14 @@ public class SpringConversionServiceConfig extends AbstractConversionServiceConf
 		factoryBean = new ConversionServiceFactoryBean();
 		Map<String, Object> data = metadata.getAnnotationAttributes(EnableSpringConversionService.class.getName());
 		boolean autoScan = (boolean) data.get(AUTOSCAN);
+		Class<? extends Converter<?, ?>>[] clases = (Class<? extends Converter<?, ?>>[]) data.get(CONVERTERS);
+		if (autoScan == clases.length > 0) {
+			throw new RuntimeException(ERR_AUTOSCAN_CONVERTER_INCOMPATIBLE);
+		}
 		if (autoScan) {
 			Map<String, Converter> converters = applicationContext.getBeansOfType(Converter.class);
 			factoryBean.setConverters(new HashSet(converters.values()));
 		} else {
-			Class<? extends Converter<?, ?>>[] clases = (Class<? extends Converter<?, ?>>[]) data.get(CONVERTERS);
 			Set<Converter<?, ?>> converters = new HashSet<>();
 			for (Class<? extends Converter<?, ?>> converterClass : clases) {
 				converters.add(findOrCreateBean(converterClass));

@@ -24,20 +24,34 @@ public @interface EnableSpringConversionService {
 
 	public static final String AUTOSCAN = "autoScan";
 	public static final String CONVERTERS = "converters";
+	public static final String ERR_AUTOSCAN_CONVERTER_INCOMPATIBLE = "Invalid configuration. Use of autoScan feature not compatible with explicit defining converter clases";
 
 	/**
+	 * <p>
 	 * When autoScan are enabled all beans of type
 	 * {@code org.springframework.core.convert.converter.Converter} availables
 	 * are automaticaly registered into the ConversionService.
+	 * </p>
+	 * <p>
+	 * AutoScan capability are <b>disabled by default </b> and must be explicity
+	 * activated.
+	 * </p>
 	 * 
 	 * @return
 	 */
-	boolean autoScan() default false;
+	boolean autoScan()
+
+	default false;
 
 	/**
+	 * <p>
 	 * Provides a list of
 	 * {@code org.springframework.core.convert.converter.Converter} to be
 	 * registered into the ConversionService implementation.
+	 * </p>
+	 * <p>
+	 * 
+	 * </p>
 	 * 
 	 * @return
 	 */

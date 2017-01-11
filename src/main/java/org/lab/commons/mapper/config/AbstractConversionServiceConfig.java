@@ -29,7 +29,7 @@ abstract class AbstractConversionServiceConfig {
 	 * into the application bean registry.
 	 * 
 	 * @param requiredType
-	 * @return
+	 * @return bean of given type
 	 */
 	protected <T> T findOrCreateBean(Class<T> requiredType) {
 		try {
