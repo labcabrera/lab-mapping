@@ -15,7 +15,7 @@ import org.springframework.core.type.AnnotationMetadata;
  * @see EnableCustomConversionService
  */
 @Configuration
-public final class CustomConversionServiceConfig extends AbstractConversionServiceConfig implements ImportAware {
+public class CustomConversionServiceConfig extends AbstractConversionServiceConfig implements ImportAware {
 
 	private ConversionService conversionService;
 

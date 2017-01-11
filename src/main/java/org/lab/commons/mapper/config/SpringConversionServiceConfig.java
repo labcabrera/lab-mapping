@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Configuration
 @Slf4j
-public final class SpringConversionServiceConfig extends AbstractConversionServiceConfig implements ImportAware {
+public class SpringConversionServiceConfig extends AbstractConversionServiceConfig implements ImportAware {
 
 	private ConversionServiceFactoryBean factoryBean;
 
