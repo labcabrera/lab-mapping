@@ -15,10 +15,10 @@ import org.springframework.core.convert.ConversionService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class AbstractPerformanceTest {
+public abstract class AbstractPerformanceTest {
 
 	@Autowired
-	private ConversionService beanMapper;
+	private ConversionService conversionService;
 
 	@Bean
 	public TestUtils testUtils() {
@@ -39,7 +39,7 @@ public class AbstractPerformanceTest {
 		Customer customer = testUtils().createCustomer("John", "Doe", "Gaia Boulevard");
 		long t0 = System.currentTimeMillis();
 		for (int i = 0; i < count; i++) {
-			beanMapper.convert(customer, Person.class);
+			conversionService.convert(customer, Person.class);
 		}
 		long t = System.currentTimeMillis() - t0;
 		log.debug("Cycles: {}, ms: {}", count, t);
@@ -50,7 +50,7 @@ public class AbstractPerformanceTest {
 		long t0 = System.currentTimeMillis();
 		HugeBean bean = initializeBean(stringSize);
 		for (int i = 0; i < count; i++) {
-			beanMapper.convert(bean, HugeBeanCopy.class);
+			conversionService.convert(bean, HugeBeanCopy.class);
 		}
 		long t = System.currentTimeMillis() - t0;
 		log.debug("Cycles: {}, ms: {}", count, t);

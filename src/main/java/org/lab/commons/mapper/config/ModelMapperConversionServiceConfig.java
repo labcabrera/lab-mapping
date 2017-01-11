@@ -49,13 +49,15 @@ public class ModelMapperConversionServiceConfig extends AbstractConversionServic
 		Map<String, Object> data = metadata.getAnnotationAttributes(EnableModelMapperConversionService.class.getName());
 		Class<? extends PropertyMap<?, ?>>[] clases = (Class<? extends PropertyMap<?, ?>>[]) data.get(MAPPINGS);
 		for (Class<? extends PropertyMap<?, ?>> i : clases) {
-			modelMapper.addMappings(findOrCreateBean(i));
+			PropertyMap<?, ?> mapping = findOrCreateBean(i);
+			modelMapper.addMappings(mapping);
 		}
 
 		// Converters
 		Class<? extends Converter<?, ?>>[] converters = (Class<? extends Converter<?, ?>>[]) data.get(CONVERTERS);
 		for (Class<? extends Converter<?, ?>> i : converters) {
-			modelMapper.addConverter(findOrCreateBean(i));
+			Converter<?, ?> converter = findOrCreateBean(i);
+			modelMapper.addConverter(converter);
 		}
 	}
 
