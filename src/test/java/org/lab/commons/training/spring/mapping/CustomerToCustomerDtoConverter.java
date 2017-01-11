@@ -4,7 +4,9 @@ import org.lab.commons.training.common.domain.Address;
 import org.lab.commons.training.common.domain.Customer;
 import org.lab.commons.training.common.dto.CustomerDto;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CustomerToCustomerDtoConverter implements Converter<Customer, CustomerDto> {
 
 	@Override

@@ -4,7 +4,9 @@ import org.lab.commons.training.common.domain.Address;
 import org.lab.commons.training.common.domain.Person;
 import org.lab.commons.training.common.dto.PersonDto;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PersonDtoToPersonConverter implements Converter<PersonDto, Person> {
 
 	@Override

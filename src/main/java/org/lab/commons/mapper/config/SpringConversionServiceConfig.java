@@ -45,9 +45,8 @@ public class SpringConversionServiceConfig extends AbstractConversionServiceConf
 		Map<String, Object> data = metadata.getAnnotationAttributes(EnableSpringConversionService.class.getName());
 		boolean autoScan = (boolean) data.get(AUTOSCAN);
 		if (autoScan) {
-			// TODO not working (instanceof dont work with proxy classes)
 			Map<String, Converter> converters = applicationContext.getBeansOfType(Converter.class);
-			factoryBean.setConverters(converters.entrySet());
+			factoryBean.setConverters(new HashSet(converters.values()));
 		} else {
 			Class<? extends Converter<?, ?>>[] clases = (Class<? extends Converter<?, ?>>[]) data.get(CONVERTERS);
 			Set<Converter<?, ?>> converters = new HashSet<>();

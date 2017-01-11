@@ -3,7 +3,9 @@ package org.lab.commons.training.spring.mapping;
 import org.lab.commons.training.common.domain.HugeBean;
 import org.lab.commons.training.common.domain.HugeBeanCopy;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
+@Component
 public class HugeBeanConverter implements Converter<HugeBean, HugeBeanCopy> {
 
 	@Override
