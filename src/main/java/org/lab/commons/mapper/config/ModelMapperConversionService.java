@@ -2,11 +2,13 @@ package org.lab.commons.mapper.config;
 
 import javax.inject.Inject;
 
-import org.apache.commons.lang3.NotImplementedException;
 import org.modelmapper.ModelMapper;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 
+/**
+ * {@code ConversionService} implementation using Dozer library.
+ */
 class ModelMapperConversionService implements ConversionService {
 
 	@Inject
@@ -29,7 +31,7 @@ class ModelMapperConversionService implements ConversionService {
 
 	@Override
 	public Object convert(Object source, TypeDescriptor sourceType, TypeDescriptor targetType) {
-		throw new NotImplementedException("Not implemented");
+		return convert(source, targetType.getClass());
 	}
 
 }

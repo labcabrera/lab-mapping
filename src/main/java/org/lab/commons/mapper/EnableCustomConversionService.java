@@ -21,5 +21,10 @@ public @interface EnableCustomConversionService {
 
 	public static final String SERVICE = "service";
 
+	/**
+	 * Defines the {@code ConversionService} implementation class.
+	 * 
+	 * @return
+	 */
 	Class<ConversionService> service();
 }
