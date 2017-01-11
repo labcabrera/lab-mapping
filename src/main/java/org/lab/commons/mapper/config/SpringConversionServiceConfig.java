@@ -51,9 +51,8 @@ public class SpringConversionServiceConfig extends AbstractConversionServiceConf
 		} else {
 			Class<? extends Converter<?, ?>>[] clases = (Class<? extends Converter<?, ?>>[]) data.get(CONVERTERS);
 			Set<Converter<?, ?>> converters = new HashSet<>();
-			for (Class<? extends Converter<?, ?>> i : clases) {
-				Converter<?, ?> converter = findOrCreateBean(i);
-				converters.add(converter);
+			for (Class<? extends Converter<?, ?>> converterClass : clases) {
+				converters.add(findOrCreateBean(converterClass));
 			}
 			factoryBean.setConverters(converters);
 		}
