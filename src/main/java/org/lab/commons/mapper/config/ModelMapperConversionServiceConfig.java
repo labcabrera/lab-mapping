@@ -18,53 +18,61 @@ import org.springframework.core.type.AnnotationMetadata;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * See
+ * Exposes those beans:
+ * <ul>
+ * <li>{@code org.springframework.core.convert.ConversionService}</li>
+ * <li>{@code org.modelmapper.ModelMapper}</li>
+ * </ul>
  * 
- * @author lab
- *
+ * @see EnableModelMapperConversionService
  */
 @Configuration
 @Slf4j
-public class ModelMapperConversionServiceConfig implements ImportAware {
+public class ModelMapperConversionServiceConfig extends AbstractConversionServiceConfig implements ImportAware {
 
 	private ModelMapper modelMapper;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.springframework.context.annotation.ImportAware#setImportMetadata(org.
+	 * springframework.core.type.AnnotationMetadata)
+	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public void setImportMetadata(AnnotationMetadata metadata) {
 		log.debug("Reading ModelMapper mapping configuration");
 		modelMapper = new ModelMapper();
+
 		// Mappings
 		Map<String, Object> data = metadata.getAnnotationAttributes(EnableModelMapperConversionService.class.getName());
 		Class<? extends PropertyMap<?, ?>>[] clases = (Class<? extends PropertyMap<?, ?>>[]) data.get(MAPPINGS);
 		for (Class<? extends PropertyMap<?, ?>> i : clases) {
-			try {
-				PropertyMap<?, ?> instance = i.newInstance();
-				modelMapper.addMappings(instance);
-			} catch (InstantiationException | IllegalAccessException ex) {
-				throw new RuntimeException(ex);
-			}
+			modelMapper.addMappings(findOrCreateBean(i));
 		}
+
 		// Converters
 		Class<? extends Converter<?, ?>>[] converters = (Class<? extends Converter<?, ?>>[]) data.get(CONVERTERS);
 		for (Class<? extends Converter<?, ?>> i : converters) {
-			try {
-				Converter<?, ?> instance = i.newInstance();
-				modelMapper.addConverter(instance);
-			} catch (InstantiationException | IllegalAccessException ex) {
-				throw new RuntimeException(ex);
-			}
+			modelMapper.addConverter(findOrCreateBean(i));
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.lab.commons.mapper.config.AbstractConversionServiceConfig#
+	 * conversionService()
+	 */
+	@Override
+	@Bean
+	public ConversionService conversionService() {
+		return new ModelMapperConversionService();
 	}
 
 	@Bean
 	public ModelMapper modelMapper() {
 		return modelMapper;
 	}
-
-	@Bean
-	public ConversionService conversionService() {
-		return new ModelMapperConversionService();
-	}
-
 }

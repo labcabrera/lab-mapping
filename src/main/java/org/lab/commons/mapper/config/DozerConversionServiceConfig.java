@@ -24,9 +24,18 @@ import org.springframework.util.Assert;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Exposes those beans:
+ * <ul>
+ * <li>{@code org.springframework.core.convert.ConversionService}</li>
+ * <li>{@code org.dozer.Mapper}</li>
+ * </ul>
+ * 
+ * @see EnableDozerConversionService
+ */
 @Configuration
 @Slf4j
-public class DozerConversionServiceConfig implements ImportAware {
+public class DozerConversionServiceConfig extends AbstractConversionServiceConfig implements ImportAware {
 
 	@Inject
 	private ApplicationContext applicationContext;
@@ -34,6 +43,13 @@ public class DozerConversionServiceConfig implements ImportAware {
 	private DozerBeanMapperFactoryBean factory;
 	private Mapper mapper;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.springframework.context.annotation.ImportAware#setImportMetadata(org.
+	 * springframework.core.type.AnnotationMetadata)
+	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public void setImportMetadata(AnnotationMetadata importMetadata) {
@@ -55,11 +71,10 @@ public class DozerConversionServiceConfig implements ImportAware {
 		if (converters != null) {
 			List<CustomConverter> converterInstances = new ArrayList<>();
 			for (Class<CustomConverter> converterClass : converters) {
-				converterInstances.add(applicationContext.getBean(converterClass));
+				converterInstances.add(findOrCreateBean(converterClass));
 			}
 			factory.setCustomConverters(converterInstances);
 		}
-		// TODO define all factory properties
 		try {
 			factory.afterPropertiesSet();
 			mapper = factory.getObject();
@@ -69,14 +84,26 @@ public class DozerConversionServiceConfig implements ImportAware {
 		}
 	}
 
-	@Bean
-	public Mapper mapper() {
-		return mapper;
-	}
-
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.lab.commons.mapper.config.AbstractConversionServiceConfig#
+	 * conversionService()
+	 */
+	@Override
 	@Bean
 	public ConversionService conversionService() {
 		return new DozerConversionService();
+	}
+
+	/**
+	 * Exposes Dozer Mapper interface as a bean.
+	 * 
+	 * @return
+	 */
+	@Bean
+	public Mapper mapper() {
+		return mapper;
 	}
 
 }

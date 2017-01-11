@@ -15,29 +15,44 @@ import lombok.extern.slf4j.Slf4j;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 
 /**
+ * * Exposes those beans:
+ * <ul>
+ * <li>{@code org.springframework.core.convert.ConversionService}</li>
+ * <li>{@code ma.glasnost.orika.impl.ConfigurableMapper}</li>
+ * </ul>
+ * 
  * @see EnableOrikaConversionService
  */
 @Configuration
 @Slf4j
-public class OrikaConversionServiceConfig implements ImportAware {
+public class OrikaConversionServiceConfig extends AbstractConversionServiceConfig implements ImportAware {
 
 	private ConfigurableMapper configurableMapper;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.springframework.context.annotation.ImportAware#setImportMetadata(org.
+	 * springframework.core.type.AnnotationMetadata)
+	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public void setImportMetadata(AnnotationMetadata importMetadata) {
 		log.debug("Reading Orika mapping configuration");
 		Map<String, Object> data = importMetadata.getAnnotationAttributes(EnableOrikaConversionService.class.getName());
 		Class<? extends ConfigurableMapper> clazz = (Class<? extends ConfigurableMapper>) data.get(MAPPER_CLASS);
-		try {
-			configurableMapper = clazz.newInstance();
-		} catch (InstantiationException | IllegalAccessException ex) {
-			throw new RuntimeException(ex);
-		}
+		configurableMapper = findOrCreateBean(clazz);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.lab.commons.mapper.config.AbstractConversionServiceConfig#
+	 * conversionService()
+	 */
 	@Bean
-	public ConversionService beanMapper() {
+	public ConversionService conversionService() {
 		return new OrikaConversionService();
 	}
 
